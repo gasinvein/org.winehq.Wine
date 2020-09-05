@@ -1,4 +1,5 @@
 id: org.winehq.Wine
+default-branch: proton
 sdk: org.freedesktop.Sdk
 runtime: org.freedesktop.Platform
 runtime-version: '21.08'
@@ -20,7 +21,7 @@ finish-args:
   - --filesystem=xdg-videos
   - --filesystem=xdg-download
   - --env=WINEDLLPATH=/app/dlls/lib32:/app/dlls/lib
-  - --env=WINEPREFIX=/var/data/wine
+  - --env=WINEPREFIX=/var/data/proton_pfx
   - --env=GST_PLUGIN_SYSTEM_PATH=/app/lib32/gstreamer-1.0:/app/lib/gstreamer-1.0:/usr/lib/i386-linux-gnu/gstreamer-1.0:/usr/lib/x86_64-linux-gnu/gstreamer-1.0
 command: wine
 rename-desktop-file: wine.desktop
@@ -80,8 +81,8 @@ add-extensions:
     directory: dlls
     subdirectories: true
     merge-dirs: lib;lib32;
-    version: staging
-    versions: stable;staging
+    version: proton
+    versions: stable;proton
 
 sdk-extensions:
   - org.freedesktop.Sdk.Compat.i386
@@ -213,33 +214,16 @@ modules:
       - UPDATE_DESKTOP_DATABASE=/bin/true
       - INSTALL_PROGRAM_FLAGS=-s
     sources: &wine-sources
-      - type: archive
-        url: https://dl.winehq.org/wine/source/6.x/wine-6.17.tar.xz
-        sha256: 9db1f2435d80262c3777317df075855aeea3e6a52cb77c630ec1b2b1fb948f08
-        x-checker-data:
-          type: html
-          url: https://dl.winehq.org/wine/source/6.x/
-          url-pattern: (wine-[\d\w\.-]+.tar.xz)
-          version-pattern: wine-([\d\w\.-]+).tar.xz
-          is-main-source: true
-      - type: archive
-        archive-type: tar-gzip
-        url: https://github.com/wine-staging/wine-staging/archive/v6.17/wine-staging-6.17.tar.gz
-        sha256: 5fc7027a772fcc89afb54c9461144c51a5e7fa35cb4ef1f60eead8362704dd82
-        dest: staging
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/wine-staging/wine-staging/tags
-          tag-query: first | .name
-          version-query: $tag | sub("^[vV]"; "")
-          url-query: >-
-            "https://github.com/wine-staging/wine-staging/archive/v\($version)/wine-staging-\($version).tar.gz"
-      - type: shell
-        commands:
-          - ./staging/patches/patchinstall.sh DESTDIR="$(pwd)" --all
+      - type: git
+        url: "https://github.com/ValveSoftware/wine.git"
+        branch: proton_5.13
       - type: patch
         paths:
           - patches/wine/loader-prefer-winedllpath.patch
+      - type: shell
+        commands:
+          - autoreconf -fiv
+          - tools/make_requests
 
   # 32-bit compatibility build
 
