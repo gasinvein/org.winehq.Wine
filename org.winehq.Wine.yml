@@ -21,6 +21,7 @@ finish-args:
   - --filesystem=xdg-videos
   - --filesystem=xdg-download
   - --env=WINEDLLPATH=/app/dlls/lib32:/app/dlls/lib
+  - --env=WINEESYNC=1
   - --env=WINEPREFIX=/var/data/proton_pfx
   - --env=GST_PLUGIN_SYSTEM_PATH=/app/lib32/gstreamer-1.0:/app/lib/gstreamer-1.0:/usr/lib/i386-linux-gnu/gstreamer-1.0:/usr/lib/x86_64-linux-gnu/gstreamer-1.0
 command: wine
