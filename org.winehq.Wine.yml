@@ -80,6 +80,8 @@ add-extensions:
     directory: dlls
     subdirectories: true
     merge-dirs: lib;lib32;
+    version: staging
+    versions: stable;staging
 
 sdk-extensions:
   - org.freedesktop.Sdk.Compat.i386
@@ -228,9 +230,22 @@ modules:
         sha256: b493065f2f83ee429c62e2ec58698a3cf63ef78722e1b20765823152e8582c56
         x-checker-data:
           type: html
-          url: https://dl.winehq.org/wine/source/6.0/
+          url: https://dl.winehq.org/wine/source/6.x/
           url-pattern: (wine-[\d\w\.-]+.tar.xz)
           version-pattern: wine-([\d\w\.-]+).tar.xz
+          is-main-source: true
+      - type: archive
+        archive-type: tar-gzip
+        url: https://github.com/wine-staging/wine-staging/archive/v6.0.tar.gz
+        sha256: 194902cb880a657de386e0789f8ce1f369fb896468ca299fd5abbe921fee043c
+        dest: staging
+        x-checker-data:
+          type: anitya
+          project-id: 15657
+          url-template: https://github.com/wine-staging/wine-staging/archive/v$version.tar.gz
+      - type: shell
+        commands:
+          - ./staging/patches/patchinstall.sh DESTDIR="$(pwd)" --all
 
   # 32-bit compatibility build
 
