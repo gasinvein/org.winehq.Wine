@@ -240,9 +240,11 @@ modules:
         sha256: 849daae53c114e85e5c3d5af13ae6dfd9b9bb46cf64f1c275e683212c5c5942e
         dest: staging
         x-checker-data:
-          type: anitya
-          project-id: 15657
-          url-template: https://github.com/wine-staging/wine-staging/archive/v$version.tar.gz
+          type: json
+          url: https://api.github.com/repos/wine-staging/wine-staging/tags
+          tag-query: first | .name
+          version-query: $tag | sub("^[vV]"; "")
+          url-query: first | .tarball_url
       - type: shell
         commands:
           - ./staging/patches/patchinstall.sh DESTDIR="$(pwd)" --all
