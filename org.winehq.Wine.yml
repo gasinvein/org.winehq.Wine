@@ -226,8 +226,8 @@ modules:
         done
     sources: &wine-sources
       - type: archive
-        url: https://dl.winehq.org/wine/source/6.x/wine-6.5.tar.xz
-        sha256: 0600fd208c06925d6634d29f543bba0a64361c34e9bd7609c2f0e209610ad347
+        url: https://dl.winehq.org/wine/source/6.x/wine-6.9.tar.xz
+        sha256: 18554e601def86a9a20172b085c66832914fc21e75d555f6e54ff89e7eae5bfe
         x-checker-data:
           type: html
           url: https://dl.winehq.org/wine/source/6.x/
@@ -236,8 +236,8 @@ modules:
           is-main-source: true
       - type: archive
         archive-type: tar-gzip
-        url: https://api.github.com/repos/wine-staging/wine-staging/tarball/refs/tags/v6.5
-        sha256: 7ca2b80468f1f2f2fc37efd7a9ff1ffe671603acda41a576c6164fd1b59de5f1
+        url: https://api.github.com/repos/wine-staging/wine-staging/tarball/refs/tags/v6.9
+        sha256: a02556f69a11c44436de40394a7088ecef4c846dba42e2db2b0f171bbfc230d1
         dest: staging
         x-checker-data:
           type: json
