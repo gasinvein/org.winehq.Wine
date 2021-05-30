@@ -19,7 +19,7 @@ finish-args:
   - --filesystem=xdg-music
   - --filesystem=xdg-videos
   - --filesystem=xdg-download
-  - --env=WINEDLLPATH=/app/dlls/lib32:/app/dlls/lib:/app/lib32/wine/wined3d:/app/lib/wine/wined3d
+  - --env=WINEDLLPATH=/app/dlls/lib32:/app/dlls/lib
   - --env=WINEPREFIX=/var/data/wine
   - --env=GST_PLUGIN_SYSTEM_PATH=/app/lib32/gstreamer-1.0:/app/lib/gstreamer-1.0:/usr/lib/i386-linux-gnu/gstreamer-1.0:/usr/lib/x86_64-linux-gnu/gstreamer-1.0
 command: wine
@@ -212,18 +212,6 @@ modules:
       - LDCONFIG=/bin/true
       - UPDATE_DESKTOP_DATABASE=/bin/true
       - INSTALL_PROGRAM_FLAGS=-s
-    post-install:
-      - &wine-post-install |
-        set -e
-        mkdir -p /app/$LIBDIR/wine/wined3d
-        for lib in dxgi d3d9 d3d10 d3d10core d3d10_1 d3d11 d3d12; do
-          for ext in dll dll.so; do
-            lib_file=/app/$LIBDIR/wine/$lib.$ext
-            if [ -f $lib_file ]; then
-              mv -v $lib_file /app/$LIBDIR/wine/wined3d/
-            fi
-          done
-        done
     sources: &wine-sources
       - type: archive
         url: https://dl.winehq.org/wine/source/6.x/wine-6.9.tar.xz
@@ -248,6 +236,9 @@ modules:
       - type: shell
         commands:
           - ./staging/patches/patchinstall.sh DESTDIR="$(pwd)" --all
+      - type: patch
+        paths:
+          - patches/wine/loader-prefer-winedllpath.patch
 
   # 32-bit compatibility build
 
@@ -266,7 +257,6 @@ modules:
     make-install-args: *wine-make-install-args
     post-install:
       - mv ${FLATPAK_DEST}/bin32/wine{,-preloader} ${FLATPAK_DEST}/bin/
-      - *wine-post-install
     sources: *wine-sources
     cleanup:
       - /bin32
