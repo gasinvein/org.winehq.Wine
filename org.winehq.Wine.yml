@@ -214,8 +214,8 @@ modules:
       - INSTALL_PROGRAM_FLAGS=-s
     sources: &wine-sources
       - type: archive
-        url: https://dl.winehq.org/wine/source/6.x/wine-6.11.tar.xz
-        sha256: c952bc2d7e3ea349944162a074aead74b7948261ba43d394d971452d7111670b
+        url: https://dl.winehq.org/wine/source/6.x/wine-6.12.tar.xz
+        sha256: fb92be300edf8039623f138383cb3908c95b2d4b9a490e2a0823b24c56b7cea8
         x-checker-data:
           type: html
           url: https://dl.winehq.org/wine/source/6.x/
@@ -224,8 +224,8 @@ modules:
           is-main-source: true
       - type: archive
         archive-type: tar-gzip
-        url: https://api.github.com/repos/wine-staging/wine-staging/tarball/refs/tags/v6.11
-        sha256: b1c0600c9fdf72fb3c782f64932026610286e81d39999972148012143d5b097c
+        url: https://api.github.com/repos/wine-staging/wine-staging/tarball/refs/tags/v6.12.1
+        sha256: 799d1a230baaa1a2629a5ce762347f0f6661d0bee1d68806c8a0916a487803de
         dest: staging
         x-checker-data:
           type: json
