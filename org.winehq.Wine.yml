@@ -231,6 +231,7 @@ modules:
       - type: patch
         paths:
           - patches/wine/loader-prefer-winedllpath.patch
+          - patches/wine/0001-msvcrt-Add-sincos-to-importlib.patch
       - type: shell
         commands:
           - autoreconf -fiv
