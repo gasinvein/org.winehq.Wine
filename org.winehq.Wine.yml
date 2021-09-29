@@ -217,8 +217,9 @@ modules:
       - INSTALL_PROGRAM_FLAGS=-s
     sources: &wine-sources
       - type: git
-        url: "https://github.com/ValveSoftware/wine.git"
-        branch: proton_5.13
+        url: https://github.com/ValveSoftware/wine.git
+        tag: proton-wine-5.13-6
+        commit: c14054e6923c3cbb4163c24ce41fcf2d0815e84b
       - type: patch
         paths:
           - patches/wine/loader-prefer-winedllpath.patch
