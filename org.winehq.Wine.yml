@@ -220,6 +220,14 @@ modules:
         url: https://github.com/ValveSoftware/wine.git
         tag: proton-wine-5.13-6
         commit: c14054e6923c3cbb4163c24ce41fcf2d0815e84b
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/ValveSoftware/wine/git/refs/tags/proton-wine-
+          tag-query: last | .ref | sub("^refs/tags/"; "")
+          commit-query: last | .object.sha
+          version-query: $tag | sub("^proton-wine-"; "")
+          timestamp-data-url: last | .object.url
+          timestamp-query: .committer.date
       - type: patch
         paths:
           - patches/wine/loader-prefer-winedllpath.patch
