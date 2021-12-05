@@ -233,7 +233,7 @@ modules:
           tag-query: first | .name
           version-query: $tag | sub("^[vV]"; "")
           url-query: >-
-            "https://github.com/wine-staging/wine-staging/archive/\($tag).tar.gz"
+            "https://github.com/wine-staging/wine-staging/archive/v\($version)/wine-staging-\($version).tar.gz"
       - type: shell
         commands:
           - ./staging/patches/patchinstall.sh DESTDIR="$(pwd)" --all
