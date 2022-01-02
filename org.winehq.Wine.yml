@@ -218,9 +218,8 @@ modules:
         sha256: d96c7f31741e4251fb50f919309c604665267cfacee13f8f450a30c953620e0d
         x-checker-data:
           type: html
-          url: https://dl.winehq.org/wine/source/6.x/
-          url-pattern: (wine-[\d\w\.-]+.tar.xz)
-          version-pattern: wine-([\d\w\.-]+).tar.xz
+          url: https://www.winehq.org/news/
+          pattern: (//dl.winehq.org/wine/source/\S+/wine-(\S+).tar.xz)
           is-main-source: true
       - type: archive
         archive-type: tar-gzip
