@@ -224,8 +224,8 @@ modules:
           is-main-source: true
       - type: archive
         archive-type: tar-gzip
-        url: https://github.com/wine-staging/wine-staging/archive/v6.23/wine-staging-6.23.tar.gz
-        sha256: 1b996e7a0ce0f0015bae1a465aa55787edff3bc9edf1c7164dd264872cc7f3f6
+        url: https://github.com/wine-staging/wine-staging/archive/v7.0-rc3/wine-staging-7.0-rc3.tar.gz
+        sha256: 91b225efe5c77846cb38f09c9d4e3267a274c6e3bc2b2b2392a95ea504e22a73
         dest: staging
         x-checker-data:
           type: json
@@ -273,8 +273,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/Winetricks/winetricks.git
-        tag: '20210825'
-        commit: fa11b11a91a984666bf83b42e09be33ec0d6b294
+        tag: 20211230-test
+        commit: b458acf76709c665edc9894d928e7f79932978f4
         x-checker-data:
           type: json
           url: https://api.github.com/repos/Winetricks/winetricks/releases/latest
