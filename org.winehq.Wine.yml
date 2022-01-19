@@ -218,8 +218,8 @@ modules:
     sources: &wine-sources
       - type: git
         url: https://github.com/ValveSoftware/wine.git
-        tag: proton-wine-6.3-6
-        commit: 3083b57f002a84b858ca6a093e90527665f61d94
+        tag: proton-wine-6.3-8
+        commit: 03891654faf9271d81240faf9cd4f471ca5832f9
         x-checker-data:
           type: json
           url: https://api.github.com/repos/ValveSoftware/wine/git/refs/tags/proton-wine-
