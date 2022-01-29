@@ -212,8 +212,8 @@ modules:
       - INSTALL_PROGRAM_FLAGS=-s
     sources: &wine-sources
       - type: archive
-        url: https://dl.winehq.org/wine/source/7.0/wine-7.0.tar.xz
-        sha256: 5b43e27d5c085cb18f97394e46180310d5eef7c1d91c6895432a3889b2de086b
+        url: https://dl.winehq.org/wine/source/7.x/wine-7.1.tar.xz
+        sha256: 113c130eed2f3256c932ffbb7f482a0533ed3ac5c62c979622a2a6df7f9f636a
         x-checker-data:
           type: html
           url: https://source.winehq.org/git/wine.git/blob_plain/refs/heads/stable:/VERSION
